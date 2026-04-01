@@ -33,10 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     overlay.addEventListener('click', closeMenu);
 
-    // --- Hero particles ---
+    // --- Hero particles (fewer on mobile) ---
     const particlesContainer = document.getElementById('particles');
     if (particlesContainer) {
-        for (let i = 0; i < 40; i++) {
+        const count = window.innerWidth < 768 ? 15 : 40;
+        for (let i = 0; i < count; i++) {
             const p = document.createElement('div');
             p.className = 'hero-particle';
             p.style.left = Math.random() * 100 + '%';
@@ -65,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Scroll reveal ---
     const revealEls = document.querySelectorAll(
-        '.c-card, .srv-card, .insc-grid, .loja-item, .don-content, .section-head, .contact-grid'
+        '.c-card, .srv-card, .insc-grid, .loja-item, .don-content, .section-head, .contact-wrapper'
     );
     revealEls.forEach(el => el.classList.add('reveal'));
 
@@ -79,6 +80,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     revealEls.forEach(el => observer.observe(el));
+
+    // --- Back to top ---
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > 600);
+        }, { passive: true });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
     // --- Contact form (Formspree) ---
     const contactForm = document.getElementById('contactForm');
