@@ -1,0 +1,23 @@
+node_modules/
+screenshots/
+package.json
+package-lock.json
+.DS_Store
+
+# Scripts auxiliares
+*.py
+clip-*.js
+crop-*.js
+download-*.js
+extract-*.js
+get-*.js
+grab-*.js
+screenshot-*.js
+take-*.js
+
+# Imagens de debug/temp
+images/courses/
+images/loja/
+images/products/grelhas*.png
+images/logo_gold.jpeg
+images/logo_gold\ Background\ Removed.png
